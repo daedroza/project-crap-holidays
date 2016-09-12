@@ -1,49 +1,41 @@
 import java.io.*;
+import java.util.*;
 public class Test
 {
- private String name;
- private int s_dldla, s_ds, s_math, s_oopm, s_eccf, s_dst, total_marks;
- public Name(String name, int s_dlda, int s_ds, int s_math, int s_oopm, int s_eccf, int s_dst, int total_marks)
- {
- this.name = name;
- this.s_ds = s_ds;
- this.s_dlda = s_dlda;
- this.s_math = s_math;
- this.s_oopm = s_dst;
- this.s_eccf = s_eccf;
- }
- 
- public String getName()
- {
- return name;
- }
- 
- public void setName(String name)
- {
-  this.name = name;
- }
-
- private static ArrayList<Name> loadDataFromFile() throws IOException 
- {
- ArrayList<Name> list = new ArrayList<Name>();
- BufferedReader br = null;
- string sCurrentLine;
- br = new BufferedReader(new FileReader("C:\\txt.txt");
- while ((sCurrentLine = br.readLine()) != null
- {
- String[] splittedLine = s.CurrentLine.split(",");
- Name name = new Name(splittedLine[0], Integer.parseInt(splittedLine[1], Integer.parseInt(splittedLine[2], Integer.parseInt(splittedLine[3], Integer.parseInt(splittedLine[4], Integer.parseInt(splittedLine[5], Integer.parseInt(splittedLine[6], Integer.parseInt(splittedLine[7];
- }
- br.close();
- return list;
+        
+	public static void main(String[] args)
+	{
+		Scanner sc = new Scanner(System.in);
+		int n = 0,i;
+		//Get the number of the student
+		System.out.println("How many students you want to add?");
+		n = sc.nextInt();
+		String[] name = new String[n];
+        int[] dlda = new int[n];
+        int[] ds = new int[n];
+        int[] math = new int[n];
+        int[] oopm = new int[n];
+        int[] eccf = new int[n];
+        int[] dst = new int[n];
+		//Get name and marks
+		for(i = 0; i < n - 1; i++)
+		{
+			System.out.println("Enter the name of student : ");
+			name[i] = sc.nextLine();
+			System.out.println("You are entering the scores of "+name[i]);
+			System.out.println("Marks for DLDA : ");
+			dlda[i] = sc.nextInt();
+			System.out.println("Marks for DS : ");
+			ds[i] = sc.nextInt();
+			System.out.println("Marks for Math : ");
+			math[i] = sc.nextInt();
+			System.out.println("Marks for OOPM : ");
+			oopm[i] = sc.nextInt();
+			System.out.println("Marks for ECCF : ");
+			eccf[i] = sc.nextInt();
+			System.out.println("Marks for DST : ");
+			dst[i] = sc.nextInt();
+			System.out.println("You have successfully entered the scores of the student "+name[i]);
+		}
+	}
 }
-
-public static void main(String[] args) throws IOException
-{
- ArrayList<Name> list = loadDataFromFile();
- // int input = Integer.parseInt(args[0]);
- Iterator<Name> it = list.iterator();
- while(it.hasNext())
- {
- Name currentName = it.next();
- if(currentName.get}
