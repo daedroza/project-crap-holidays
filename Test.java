@@ -18,7 +18,7 @@ public class Test
         int[] eccf = new int[n];
         int[] dst = new int[n];
 		//Get name and marks
-		for(i = 0; i < n - 1; i++)
+		for(i = 0; i <= n - 1; i++)
 		{
 			System.out.println("Enter the name of student : ");
 			name[i] = sc.nextLine();
