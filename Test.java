@@ -6,7 +6,6 @@ class Name {
 
 class Marks extends Name {
 	public int dlda, ds, math, oopm, eccf, dst;
-	public boolean result;
 }
 
 class Student extends Marks {
@@ -179,7 +178,9 @@ public class Test {
 		for(int i = 0; i <= n - 1; i++) {
 			if(s[i].total_marks > 210) {
 				countp++;
-			}else countf++;
+			}else {
+				countf++;
+			}
 		}
 		System.out.println("No. of passed students = "+countp);
 		System.out.println("No. of failed students = "+countf);
