@@ -13,20 +13,9 @@ class Student extends Marks {
 }
 
 public class Test {
-	public static void main(String[] args) {
-		Scanner sc = new Scanner(System.in);
-		int x,y; //Used somewhere in for-loops
-		int countp = 0, countf = 0;
-		System.out.println("Number of students : ");
-		int n;
-		n = sc.nextInt();
-		Student[] s = new Student[n];
-		Student t = new Student();
-		for(int i = 0; i <= n - 1; i++) {
-			s[i] = new Student();
-		}
-		//Enter stuff
-		for(int i = 0; i <= n - 1; i++) {
+	public static int input_stuff(int n, Student s[], Scanner sc) {
+		try {
+			for(int i = 0; i <= n - 1; i++) {
 			System.out.println("Enter the name of student : ");
 			s[i].name = sc.next();
 			System.out.println("You are entering the scores of "+s[i].name);
@@ -44,6 +33,31 @@ public class Test {
 			s[i].dst = sc.nextInt();
 			System.out.println("You have successfully entered the scores of the student "+s[i].name);
 			System.out.println("\n");
+		}
+		return 0;
+	}catch(InputMismatchException e) {
+		System.out.println("NotMarksExpection occurred")
+		System.out.println("***You've entered alphabet(s) instead of Marks***");
+		System.out.println("***Your whole changes is destroyed***");
+		return -1;
+	}
+	}
+	public static void main(String[] args) {
+		Scanner sc = new Scanner(System.in);
+		int x,y; //Used somewhere in for-loops
+		int countp = 0, countf = 0;
+		int status = -150; //Status Flag;
+		System.out.println("Number of students : ");
+		int n;
+		n = sc.nextInt();
+		Student[] s = new Student[n];
+		Student t = new Student();
+		for(int i = 0; i <= n - 1; i++) {
+			s[i] = new Student();
+		}
+		while(true) {
+			if((status = input_stuff(n, s, sc)) == 0)
+				break;
 		}
 		//Calculate Total Marks
 		for(int i = 0; i <= n - 1; i++) {
