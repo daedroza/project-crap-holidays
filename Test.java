@@ -28,6 +28,7 @@ public class Test {
 				System.out.println("***MarksOutOfRangeException occurred***");
 				System.out.println("Enter the marks again : ");
 			}catch(InputMismatchException e) {
+				//FAT FINGERS
 				System.out.println("***NotMarksExpection occurred***");
 				System.out.println("Enter the marks again : ");
 				/* If the user inputs 'Character/String' in place of integer, the character placed
@@ -220,6 +221,44 @@ public class Test {
 		}
 		System.out.println("No. of passed students = "+countp);
 		System.out.println("No. of failed students = "+countf);
-
+		//File Handling
+		try(PrintWriter out = new PrintWriter("txt.txt");) {
+		for(int i = 0; i <= n - 1; i++) {
+			out.println();
+			out.print(i+1);
+			out.print(". Name : ");
+			out.print(s[i].name);
+			out.print(", DLDA : ");
+			out.print(s[i].dlda);
+			out.print(", DS : ");
+			out.print(s[i].ds);
+			out.print(", MATH : ");
+			out.print(s[i].math);
+			out.print(", OOPM : ");
+			out.print(s[i].oopm);
+			out.print(", ECCF : ");
+			out.print(s[i].eccf);
+			out.print(", DST : ");
+			out.print(s[i].dst);
+			out.print(", TOTAL MARKS : ");
+			out.print(s[i].total_marks);
+		}
+		out.println();
+		out.println();
+		out.println("DLDA Topper : "+s[pos_dlda].name+" and his/her score : "+s[pos_dlda].dlda);
+		out.println("DS Topper : "+s[pos_ds].name+" and his/her score : "+s[pos_ds].ds);
+		out.println("Math Topper : "+s[pos_math].name+" and his/her score : "+s[pos_math].math);
+		out.println("OOPM Topper : "+s[pos_oopm].name+" and his/her score : "+s[pos_oopm].oopm);
+		out.println("ECCF Topper : "+s[pos_eccf].name+" and his/her score : "+s[pos_eccf].eccf);
+		out.println("DST Topper : "+s[pos_dst].name+" and his/her score : "+s[pos_dst].dst);
+		out.println("Overall Topper : "+s[pos_total].name+" and his/her score : "+s[pos_total].total_marks);
+		out.println();
+		out.println();
+		out.println("No. of passed students = "+countp);
+		out.println("No. of failed students = "+countf);
+		out.close();
+	}catch(FileNotFoundException e) {
+		System.out.println("Exception Occurred : FileNotFoundException");
+	}
 	}
 }

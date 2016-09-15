@@ -1,1 +1,16 @@
 
+1. Name : 4, DLDA : 24, DS : 14, MATH : 46, OOPM : 43, ECCF : 34, DST : 24, TOTAL MARKS : 185
+2. Name : Kaplaj, DLDA : 13, DS : 23, MATH : 12, OOPM : 34, ECCF : 23, DST : 42, TOTAL MARKS : 147
+3. Name : 34329, DLDA : 12, DS : 3, MATH : 4, OOPM : 5, ECCF : 78, DST : 3, TOTAL MARKS : 105
+
+DLDA Topper : 4 and his/her score : 24
+DS Topper : Kaplaj and his/her score : 23
+Math Topper : 4 and his/her score : 46
+OOPM Topper : 4 and his/her score : 43
+ECCF Topper : 34329 and his/her score : 78
+DST Topper : Kaplaj and his/her score : 42
+Overall Topper : 4 and his/her score : 185
+
+
+No. of passed students = 0
+No. of failed students = 3
