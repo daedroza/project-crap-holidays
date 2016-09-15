@@ -1,9 +1,13 @@
 import java.io.*;
 import java.util.*;
+class MarksOutOfRangeException extends Exception {
+	public MarksOutOfRangeException(String name) {
+		super(name);
+	}
+}
 class Name {
 	public String name;
 }
-
 class Marks extends Name {
 	public int dlda, ds, math, oopm, eccf, dst;
 }
@@ -11,36 +15,51 @@ class Marks extends Name {
 class Student extends Marks {
 	public int total_marks;
 }
-
 public class Test {
+	public static int super_nextInt(Scanner sc) {
+		int temp = 0;
+		while(true) {
+			try { 
+				temp = sc.nextInt();
+				if(temp >= 0 && temp <= 100) {
+					break;
+				}else throw new MarksOutOfRangeException("MarksOutOfRangeException");
+			}catch(MarksOutOfRangeException e) {
+				System.out.println("***MarksOutOfRangeException occurred***");
+				System.out.println("Enter the marks again : ");
+			}catch(InputMismatchException e) {
+				System.out.println("***NotMarksExpection occurred***");
+				System.out.println("Enter the marks again : ");
+				/* If the user inputs 'Character/String' in place of integer, the character placed
+				inside the command prompt tries to fit into next 'sc.nextInt();' thus creating an infinite loop
+				since we are only inputting nextInt() and not next(). To stop the character being assigned to next
+				sc.nextInt(); we use a String garbage */
+				String garbage = sc.next();
+			}
+		}
+		return temp;
+	}
 	public static int input_stuff(int n, Student s[], Scanner sc) {
-		try {
-			for(int i = 0; i <= n - 1; i++) {
+		for(int i = 0; i <= n - 1; i++) {
 			System.out.println("Enter the name of student : ");
 			s[i].name = sc.next();
 			System.out.println("You are entering the scores of "+s[i].name);
 			System.out.println("Marks for DLDA : ");
-			s[i].dlda = sc.nextInt();
+			s[i].dlda = super_nextInt(sc);
 			System.out.println("Marks for DS : ");
-			s[i].ds = sc.nextInt();
+			s[i].ds = super_nextInt(sc);
 			System.out.println("Marks for Math : ");
-			s[i].math = sc.nextInt();
+			s[i].math = super_nextInt(sc);
 			System.out.println("Marks for OOPM : ");
-			s[i].oopm = sc.nextInt();
+			s[i].oopm = super_nextInt(sc);
 			System.out.println("Marks for ECCF : ");
-			s[i].eccf = sc.nextInt();
+			s[i].eccf = super_nextInt(sc);
 			System.out.println("Marks for DST : ");
-			s[i].dst = sc.nextInt();
+			s[i].dst = super_nextInt(sc);
 			System.out.println("You have successfully entered the scores of the student "+s[i].name);
 			System.out.println("\n");
 		}
 		return 0;
-	}catch(InputMismatchException e) {
-		System.out.println("NotMarksExpection occurred")
-		System.out.println("***You've entered alphabet(s) instead of Marks***");
-		System.out.println("***Your whole changes is destroyed***");
-		return -1;
-	}
 	}
 	public static void main(String[] args) {
 		Scanner sc = new Scanner(System.in);
@@ -56,8 +75,11 @@ public class Test {
 			s[i] = new Student();
 		}
 		while(true) {
-			if((status = input_stuff(n, s, sc)) == 0)
+			status = -1;
+			status = input_stuff(n, s, sc);
+			if(status == 0) {
 				break;
+			}
 		}
 		//Calculate Total Marks
 		for(int i = 0; i <= n - 1; i++) {
@@ -190,7 +212,7 @@ public class Test {
 		System.out.println("\n");
 		//Passed or failed <- DESTROYS MANY PPLS LIFE
 		for(int i = 0; i <= n - 1; i++) {
-			if(s[i].total_marks > 210) {
+			if(s[i].total_marks >= 210) {
 				countp++;
 			}else {
 				countf++;
