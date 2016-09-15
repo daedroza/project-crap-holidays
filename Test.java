@@ -6,7 +6,7 @@ class MarksOutOfRangeException extends Exception {
 	}
 }
 class Name {
-	public String name;
+	public String name, first_name, last_name, space = " ";
 }
 class Marks extends Name {
 	public int dlda, ds, math, oopm, eccf, dst;
@@ -42,8 +42,11 @@ public class Test {
 	}
 	public static int input_stuff(int n, Student s[], Scanner sc) {
 		for(int i = 0; i <= n - 1; i++) {
-			System.out.println("Enter the name of student : ");
-			s[i].name = sc.next();
+			System.out.println("Enter the First Name of student : ");
+			s[i].first_name = sc.next();
+			System.out.println("Enter the Last Name of Student : ");
+			s[i].last_name = sc.next();
+			s[i].name = s[i].first_name + s[i].space + s[i].last_name;
 			System.out.println("You are entering the scores of "+s[i].name);
 			System.out.println("Marks for DLDA : ");
 			s[i].dlda = super_nextInt(sc);
