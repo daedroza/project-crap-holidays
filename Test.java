@@ -25,11 +25,11 @@ public class Test {
 					break;
 				}else throw new MarksOutOfRangeException("MarksOutOfRangeException");
 			}catch(MarksOutOfRangeException e) {
-				System.out.println("***MarksOutOfRangeException occurred***");
+				System.out.println("***Exception Occurred : MarksOutOfRangeException***");
 				System.out.println("Enter the marks again : ");
 			}catch(InputMismatchException e) {
 				//FAT FINGERS
-				System.out.println("***NotMarksExpection occurred***");
+				System.out.println("***Exception Occurred : NotMarksException***");
 				System.out.println("Enter the marks again : ");
 				/* If the user inputs 'Character/String' in place of integer, the character placed
 				inside the command prompt tries to fit into next 'sc.nextInt();' thus creating an infinite loop
@@ -221,6 +221,7 @@ public class Test {
 		}
 		System.out.println("No. of passed students = "+countp);
 		System.out.println("No. of failed students = "+countf);
+		System.out.println("Printing all this to file...");
 		//File Handling
 		try(PrintWriter out = new PrintWriter("txt.txt");) {
 		for(int i = 0; i <= n - 1; i++) {
@@ -258,7 +259,7 @@ public class Test {
 		out.println("No. of failed students = "+countf);
 		out.close();
 	}catch(FileNotFoundException e) {
-		System.out.println("Exception Occurred : FileNotFoundException");
+		System.out.println("***Exception Occurred : FileNotFoundException***");
 	}
 	}
 }
