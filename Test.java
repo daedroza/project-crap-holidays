@@ -1,6 +1,13 @@
 import java.io.*;
 import java.util.*;
 
+/* User-defined Exceptions */
+class NotNameException extends Exception {
+	public NotNameException(String name) {
+		super(name);
+	}
+}
+
 class MarksOutOfRangeException extends Exception {
 	public MarksOutOfRangeException(String name) {
 		super(name);
@@ -18,6 +25,13 @@ class Marks extends Name {
 class Student extends Marks {
 	public int total_marks;
 }
+/* We create a new class to avoid creating static methods and variables
+ * Since our main method is always static, methods direclty called in that
+ * class should also be static which is not good when objects are created
+ * since each new instance of variable is applied to every object.
+ * It's also creates errors like unable to deference non-static methods
+ * from static references which are pain to solve.
+ */
 class Stuff {
 	Student s[] = new Student[200];
 	Student t = new Student(); /* Temporary variable */
@@ -60,14 +74,49 @@ class Stuff {
 		return temp;
 	}
 	
+	public String super_nextLine() {
+		String garbage = null;
+		while(true) {
+			try {
+				/* Consume newline layer to make nextLine() work */
+				sc.nextLine();
+				String temp = sc.nextLine();
+				if(temp.matches("[a-zA-Z\\s]*$"))
+					return temp;
+				else throw new NotNameException("NotNameException");
+			}catch(NotNameException e) {
+				System.out.println("***Exception Occurred : NotNameException***");
+				do{
+					if(garbage != "clear") {
+						System.out.println("Type 'clear' to continue");
+					}
+					garbage = sc.next();
+				}while(garbage == "clear");	
+				System.out.println("Enter the name again : ");
+				
+			}
+		}
+	}
+	
+	public int menu_nextInt() {
+		int temp;
+		while(true) {
+			try { 
+				temp = sc.nextInt();
+				return temp;
+			}catch(InputMismatchException e) {
+				System.out.println("***Exception Occurred : InputMismatchException***"); 
+				System.out.println("Enter the choice again : ");
+				String garbage = sc.next();
+			}
+		}
+	}
+
 	public void take_input() {
 			i = n;
 			s[i] = new Student();
 			System.out.println("Enter the First Name of student : ");
-			s[i].first_name = sc.next();
-			System.out.println("Enter the Last Name of Student : ");
-			s[i].last_name = sc.next();
-			s[i].name = s[i].first_name + s[i].space + s[i].last_name;
+			s[i].name = super_nextLine();
 			System.out.println("You are entering the scores of "+s[i].name);
 			System.out.println("Marks for DLDA : ");
 			s[i].dlda = super_nextInt();
@@ -82,12 +131,8 @@ class Stuff {
 			System.out.println("Marks for DST : ");
 			s[i].dst = super_nextInt();
 			System.out.println("You have successfully entered the scores of the student "+s[i].name);
-			System.out.println("\n");
-			/* Calculate total marks */
-			for(int l = 0; l < n - 1; l++) {
 			s[i].total_marks = s[i].dlda + s[i].ds + s[i].math + s[i].oopm + s[i].eccf + s[i].dst;
 			System.out.println("Total marks for "+s[i].name+" is "+s[i].total_marks);
-		}
 		i++;
 	}
 	
@@ -102,6 +147,7 @@ class Stuff {
 				}
 				}
 			}
+			System.out.println("Sort complete, to view use Print to file");
 		}
 	}
 		
@@ -303,8 +349,8 @@ class Stuff {
 			System.out.println("4 - Total number of pass & fail students");
 			System.out.println("5 - Print to file");
 			System.out.println("6 - Exit");
-			System.out.println("Enter a choice : ");
-			choice = sc.nextInt();
+			System.out.println("Enter choice [1-6] : ");
+			choice = menu_nextInt();
 			switch(choice) {
 				case 1 :
 				take_input();
@@ -333,6 +379,11 @@ class Stuff {
 				
 				case 6 :
 				System.exit(0);
+				
+				default:
+				System.out.println();
+				System.out.println("Wrong choice");
+				
 			}
 		}
 	}
