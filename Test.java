@@ -22,6 +22,14 @@ class Stuff {
 	Student s[] = new Student[200];
 	Student t = new Student(); /* Temporary variable */
 	static int n = 0;
+	static int i = 0;
+	int pos_dlda = 0;
+	int pos_ds = 0;	
+	int pos_math = 0;
+	int pos_oopm = 0;
+	int pos_eccf = 0;
+	int pos_dst = 0;
+	int pos_total = 0;
 	int countp = 0, countf = 0;
 	Scanner sc = new Scanner (System.in);
 	
@@ -53,7 +61,7 @@ class Stuff {
 	}
 	
 	public void take_input() {
-			int i = n;
+			i = n;
 			s[i] = new Student();
 			System.out.println("Enter the First Name of student : ");
 			s[i].first_name = sc.next();
@@ -84,27 +92,19 @@ class Stuff {
 	}
 	
 	public void sort_totalmarks() {
-		System.out.println(s[0].name);
-		System.out.println(s[1].name);
-		for(int x = 0;x < n - 1; x++) {
-			for(int y = 0;y < n - 1 ; y++) {
+		if(n > 2) {
+		for(int x = 0;x <= n - 1; x++) {
+			for(int y = 0;y <= n - 2 ; y++) {
 				if(s[y].total_marks < s[y+1].total_marks) {
 					t=s[y];
 					s[y]=s[y+1];
 					s[y+1]=t;
 				}
+				}
 			}
 		}
 	}
-	
-	int pos_dlda = 0;
-	int pos_ds = 0;	
-	int pos_math = 0;
-	int pos_oopm = 0;
-	int pos_eccf = 0;
-	int pos_dst = 0;
-	int pos_total = 0;
-	
+		
 	public int topper_dlda() {
 		int topper_dlda = s[0].dlda;
 		for(int i = 0; i <= n - 1; i++) {
@@ -236,7 +236,7 @@ class Stuff {
 	
 	public void pass_fail() {
 		
-		for(int i = 0; i < n - 1; i++) {
+		for(int i = 0; i <= n - 1; i++) {
 			if(s[i].total_marks >= 210) {
 				countp++;
 			}else {
@@ -250,7 +250,11 @@ class Stuff {
 	
 	public void printtofile() {
 		try(PrintWriter out = new PrintWriter("txt.txt");) {
-			for(int i = 0; i < n - 1; i++) {
+			for(int i = 0; i <= n - 1; i++) {
+				if(n > 2) {
+					pass_fail();
+					topper();
+				}
 				out.println();
 				out.print(i+1);
 				out.print(". Name : ");
