@@ -28,7 +28,8 @@ class Student extends Marks {
 /* We create a new class to avoid creating static methods and variables
  * Since our main method is always static, methods direclty called in that
  * class should also be static which is not good when objects are created
- * since each new instance of variable is applied to every object.
+ * since each new instance of variable is applied to every object(Atleast in
+ * my experiments it did so we planned to skip this altogether).
  * It's also creates errors like unable to deference non-static methods
  * from static references which are pain to solve.
  */
@@ -44,7 +45,7 @@ class Stuff {
 	int pos_eccf = 0;
 	int pos_dst = 0;
 	int pos_total = 0;
-	int countp = 0, countf = 0;
+	int countp, countf;
 	Scanner sc = new Scanner (System.in);
 	
 	public int super_nextInt() {
@@ -281,7 +282,8 @@ class Stuff {
 	
 	
 	public void pass_fail() {
-		
+		countp = 0;
+		countf = 0;
 		for(int i = 0; i <= n - 1; i++) {
 			if(s[i].total_marks >= 210) {
 				countp++;
@@ -295,12 +297,14 @@ class Stuff {
 	}
 	
 	public void printtofile() {
-		try(PrintWriter out = new PrintWriter("txt.txt");) {
-			for(int i = 0; i <= n - 1; i++) {
-				if(n > 2) {
+		/* We need this */
+		if(n > 2) {
 					pass_fail();
 					topper();
 				}
+		try(PrintWriter out = new PrintWriter("txt.txt");) {
+			for(int i = 0; i <= n - 1; i++) {
+				
 				out.println();
 				out.print(i+1);
 				out.print(". Name : ");
